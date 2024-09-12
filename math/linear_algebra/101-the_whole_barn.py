@@ -1,19 +1,41 @@
 #!/usr/bin/env python3
-'''
-    A function def add_matrices(mat1, mat2):
-    that adds two matrices element-wise.
-'''
+"""
+Module that adds two matrices
+"""
+
+
+def matrix_shape(matrix):
+    """
+    Needs a matrix as input
+    Returns the shape as a list of integers
+    """
+    if type(matrix[0]) is not list:
+        return [len(matrix)]
+    else:
+        return [len(matrix)] + matrix_shape(matrix[0])
+
+
+def add_recursive(mat1, mat2):
+    """
+    Needs a matrix as input
+    Returns the resulting matrix
+    """
+    if type(mat1[0]) is not list:
+        return [mat1[i] + mat2[i] for i in range(len(mat1))]
+    else:
+        result = []
+        for i in range(len(mat1)):
+            inner = add_recursive(mat1[i], mat2[i])
+            result.append(inner)
+        return result
+
 
 def add_matrices(mat1, mat2):
-    '''
-        A function def add_matrices(mat1, mat2):
-        that adds two matrices element-wise.
-    '''
-    if isinstance(mat1, list) and isinstance(mat2, list):
-        if len(mat1) == len(mat2):
-            return [add_matrices(a, b) for a, b in zip(mat1, mat2)]
-        else:
-            return "None"  
-    elif isinstance(mat1, (int, float)) and isinstance(mat2, (int, float)):
-        return mat1 + mat2
-    return "None"
+    """
+    Needs a matrix as input
+    Returns the resulting matrix
+    """
+    if matrix_shape(mat1) != matrix_shape(mat2):
+        return None
+    else:
+        return add_recursive(mat1, mat2)
