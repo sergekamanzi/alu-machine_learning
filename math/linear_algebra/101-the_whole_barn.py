@@ -3,7 +3,6 @@
     A function def add_matrices(mat1, mat2):
     that adds two matrices element-wise.
 '''
-
 def add_matrices(mat1, mat2):
     '''
         A function def add_matrices(mat1, mat2):
