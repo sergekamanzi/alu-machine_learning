@@ -1,1 +1,1 @@
-math director
+math in machine learning
