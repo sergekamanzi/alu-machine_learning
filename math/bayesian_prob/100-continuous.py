@@ -31,12 +31,19 @@ def posterior(x, n, p1, p2):
         raise ValueError("x must be an integer that is greater than or equal to 0")
     if x > n:
         raise ValueError("x cannot be greater than n")
-    if not isinstance(p1, float) or not isinstance(p2, float):
-        raise ValueError("p1 and p2 must be floats")
-    if not (0 <= p1 <= 1) or not (0 <= p2 <= 1):
-        raise ValueError("p1 and p2 must be in the range [0, 1]")
-    if p2 < p1:
-        raise ValueError("p2 must be greater than or equal to p1")
+    
+    if not isinstance(p1, float):
+        raise ValueError("p1 must be a float in the range [0, 1]")
+    if not isinstance(p2, float):
+        raise ValueError("p2 must be a float in the range [0, 1]")
+    
+    if not (0 <= p1 <= 1):
+        raise ValueError("p1 must be a float in the range [0, 1]")
+    if not (0 <= p2 <= 1):
+        raise ValueError("p2 must be a float in the range [0, 1]")
+    
+    if p2 <= p1:
+        raise ValueError("p2 must be greater than p1")
 
     # Beta function to calculate the cumulative distribution
     def beta_cdf(p, a, b):
